@@ -1,0 +1,12 @@
+spring:
+  main:
+    banner-mode: off
+
+management:
+  endpoints:
+    web.base-path: /
+    web:
+      exposure:
+        include: health, prometheus
+      path-mapping:
+        prometheus: metrics

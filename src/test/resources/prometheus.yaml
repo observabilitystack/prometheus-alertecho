@@ -1,0 +1,11 @@
+global:
+  scrape_interval:     30s
+
+rule_files:
+  - /etc/prometheus/alerts/*.yaml
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
