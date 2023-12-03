@@ -1,0 +1,26 @@
+version: '2.4'
+services:
+
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    command:
+      - --config.file=/etc/prometheus/prometheus.yaml
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+      - ./alerts.yaml:/etc/prometheus/alerts/alerts.yaml
+    ports:
+    - 9090:9090
+
+  alertmanager:
+    image: prom/alertmanager:v0.26.0
+    command:
+      - --config.file=/etc/prometheus/alertmanager.yaml
+    volumes:
+      - ./alertmanager.yaml:/etc/prometheus/alertmanager.yaml
+    ports:
+      - 9093:9093
+
+  alertecho:
+    image: observabilitystack/prometheus-alertecho:latest
+    ports:
+      - 9095:9095

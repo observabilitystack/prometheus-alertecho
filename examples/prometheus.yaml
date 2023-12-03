@@ -1,0 +1,30 @@
+# A Prometheus configuration that scrapes the
+# local Prometheus, the Alertmanager and Alertecho
+# for an alert history.
+global:
+  scrape_interval:     30s
+
+rule_files:
+  - /etc/prometheus/alerts/*.yaml
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+    - targets:
+      - prometheus:9090
+  - job_name: alertmanager
+    static_configs:
+    - targets:
+      - alertmanager:9093
+
+    # Scrape Alertecho for firing Alerts
+  - job_name: alertecho
+    static_configs:
+    - targets:
+      - alertecho:9095

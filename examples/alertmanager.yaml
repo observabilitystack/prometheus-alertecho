@@ -1,3 +1,5 @@
+# An Alertmanager configuration that forwards all
+# firing and resolved alerts to Alertecho
 route:
   group_wait: 15s
   group_interval: 30s
@@ -7,4 +9,4 @@ receivers:
   - name: default
     webhook_configs:
       - send_resolved: true
-        url: http://host.docker.internal:9095/alerts
+        url: http://alertecho:9095/alerts

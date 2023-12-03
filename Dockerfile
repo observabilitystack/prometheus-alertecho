@@ -17,6 +17,6 @@ FROM debian:bookworm-slim
 
 COPY --from=builder "/build/target/prometheus-alertecho" /srv/prometheus-alertecho
 
-HEALTHCHECK --interval=5s --timeout=1s CMD curl -f http://localhost:8080/health
-EXPOSE 8080
+HEALTHCHECK --interval=5s --timeout=1s CMD curl -f http://localhost:9095/health
+EXPOSE 9095
 CMD exec /srv/prometheus-alertecho
