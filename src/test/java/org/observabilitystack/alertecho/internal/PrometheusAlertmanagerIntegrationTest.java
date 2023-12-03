@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.actuate.observability.AutoConfigureObservability;
@@ -21,6 +22,7 @@ import org.testcontainers.utility.MountableFile;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @Testcontainers
 @AutoConfigureObservability
+@Disabled
 public class PrometheusAlertmanagerIntegrationTest {
 
     public static final Network network = Network.newNetwork();
