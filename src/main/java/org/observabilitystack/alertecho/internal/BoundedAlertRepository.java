@@ -15,7 +15,7 @@ public class BoundedAlertRepository implements AlertRepository {
     private final BoundedCollection<Alert> storage;
 
     public BoundedAlertRepository() {
-        this(4096);
+        this(256_000);
     }
 
     public BoundedAlertRepository(int maxAlerts2echo) {

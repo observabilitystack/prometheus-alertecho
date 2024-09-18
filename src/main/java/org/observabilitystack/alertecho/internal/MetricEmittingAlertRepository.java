@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Primary
+@Slf4j
 public class MetricEmittingAlertRepository extends DelegatingAlertRepository {
 
     private static final String METRIC = "alertecho_alerts_stored";
@@ -34,9 +36,11 @@ public class MetricEmittingAlertRepository extends DelegatingAlertRepository {
     @Override
     public void add(Alert alert) {
         if (!registeredAlerts.containsKey(alert)) {
+            log.info("Adding new alert {} ...", alert);
             final AlertStatusMetric asg = AlertStatusMetric.from(alert, meterRegistry);
             registeredAlerts.put(alert, asg);
         } else {
+            log.info("Updating alert {} ...", alert);
             registeredAlerts.get(alert).setStatus(alert.getStatus());
         }
 
