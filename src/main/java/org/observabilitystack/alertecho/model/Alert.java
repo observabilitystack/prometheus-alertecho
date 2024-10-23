@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class Alert {
 
+    // TODO: store updated up as instant
     private AlertStatus status;
     private Map<String, String> labels;
     private Map<String, String> annotations;
