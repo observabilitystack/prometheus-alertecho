@@ -15,7 +15,7 @@ RUN mvn -B native:compile -P native --no-transfer-progress -DskipTests=true && \
 # ---------------------------------------------------------------------
 FROM debian:bookworm-slim
 
-COPY --from=curlimages/curl:latest /usr/bin/curl /usr/bin/curl
+COPY --from=ghcr.io/tarampampam/curl:latest-alpine /bin/curl /bin/curl
 
 COPY --from=builder "/build/target/prometheus-alertecho" /srv/prometheus-alertecho
 
