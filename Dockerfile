@@ -15,6 +15,8 @@ RUN mvn -B native:compile -P native --no-transfer-progress -DskipTests=true && \
 # ---------------------------------------------------------------------
 FROM debian:bookworm-slim
 
+COPY --from=curlimages/curl:latest /usr/bin/curl /usr/bin/curl
+
 COPY --from=builder "/build/target/prometheus-alertecho" /srv/prometheus-alertecho
 
 HEALTHCHECK --interval=5s --timeout=1s CMD curl -f http://localhost:9095/health
